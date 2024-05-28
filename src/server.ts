@@ -46,6 +46,10 @@ export class Server {
     this.app.get("/", (req, res) => {
       res.sendFile("index.html");
     });
+
+    this.app.get("/hello-world", (req, res) => { 
+     return res.json('olá');
+    })
   }
 
   private handleSocketConnection(): void {
