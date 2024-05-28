@@ -21,7 +21,7 @@ export class Server {
   private initialize(): void {
     this.app = express();
     this.httpServer = createServer(this.app);
-    this.io = socketIO(this.httpServer);
+    this.io = socketIO(this.httpServer, { transports: ['websocket'] });
 
     this.configureApp();
     this.configureRoutes();
@@ -29,14 +29,14 @@ export class Server {
   }
 
   private configureApp(): void {
-    
+
     this.io.origins('*:*');
 
     this.app.use(cors({
-      origin: '*', // Permite todas as origens
-      methods: ['GET', 'POST'], // Métodos permitidos
-      allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
-      credentials: true // Permite envio de cookies
+      origin: '*',
+      methods: ['GET', 'POST'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      credentials: true
     }));
 
     this.app.use(express.static(path.join(__dirname, "../public")));
