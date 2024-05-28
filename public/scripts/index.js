@@ -63,7 +63,7 @@ function updateUserList(socketIds) {
   });
 }
 
-const socket = io.connect("https://simple-chat-app-orpin.vercel.app");
+const socket = io.connect("https://simple-chat-app-pmjc.onrender.com");
 
 socket.on("update-user-list", ({ users }) => {
   updateUserList(users);
