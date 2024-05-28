@@ -2,6 +2,8 @@ import express, { Application } from "express";
 import socketIO, { Server as SocketIOServer } from "socket.io";
 import { createServer, Server as HTTPServer } from "http";
 import path from "path";
+import cors from "cors";
+
 
 export class Server {
   private httpServer: HTTPServer;
@@ -27,6 +29,14 @@ export class Server {
   }
 
   private configureApp(): void {
+
+    this.app.use(cors({
+      origin: '*', // Permite todas as origens
+      methods: ['GET', 'POST'], // Métodos permitidos
+      allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+      credentials: true // Permite envio de cookies
+    }));
+
     this.app.use(express.static(path.join(__dirname, "../public")));
   }
 
