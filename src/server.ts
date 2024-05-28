@@ -21,7 +21,7 @@ export class Server {
   private initialize(): void {
     this.app = express();
     this.httpServer = createServer(this.app);
-    this.io = socketIO(this.httpServer, { transports: ['websocket'] });
+    this.io = socketIO(this.httpServer, { transports: ['websocket', 'polling'] });
 
     this.configureApp();
     this.configureRoutes();
@@ -47,8 +47,8 @@ export class Server {
       res.sendFile("index.html");
     });
 
-    this.app.get("/hello-world", (req, res) => { 
-     return res.json('olá');
+    this.app.get("/hello-world", (req, res) => {
+      return res.json('olá');
     })
   }
 
