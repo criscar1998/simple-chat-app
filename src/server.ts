@@ -29,6 +29,8 @@ export class Server {
   }
 
   private configureApp(): void {
+    
+    this.io.origins('*:*');
 
     this.app.use(cors({
       origin: '*', // Permite todas as origens
