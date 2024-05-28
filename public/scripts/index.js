@@ -63,7 +63,7 @@ function updateUserList(socketIds) {
   });
 }
 
-const socket = io.connect("https://simple-chat-app-khaki.vercel.app");
+const socket = io.connect("https://simple-chat-app-orpin.vercel.app");
 
 socket.on("update-user-list", ({ users }) => {
   updateUserList(users);
